@@ -15,6 +15,7 @@ To preview locally, run `python3 -m http.server` in this folder and open http://
 
 ```
 index.html                 the landing page (all the text lives here)
+he/index.html              the Hebrew landing page (right-to-left), same assets
 assets/css/main.css        colours, type, layout
 assets/js/room.js          the 3D room, built from the architect's plan
 assets/js/main.js          scrolling, the tour, minimap, auto-fly, photo viewer
@@ -25,7 +26,9 @@ docs/                      safety sheets and instructions (PDF) go here
 
 ## Things to fill in
 
-- **Safety sheets and instructions.** Fourteen draft PDFs are in `docs/`. They need the engineer's review: see `docs/README.md`.
+- **Two languages.** `index.html` is English and `he/index.html` is Hebrew; the button in the header switches between them.
+  A change to one page has to be made in the other by hand.
+- **Safety sheets and instructions.** Fourteen draft PDFs are in `docs/`, and their Hebrew versions in `docs/he/`. They need the engineer's review: see `docs/README.md`.
 - **Links marked `data-soon`.** The Workshops and Nitai pages are not built yet.
   Any link carrying a `data-soon="…"` attribute shows that message instead of navigating. Delete the attribute
   once the page or file exists.

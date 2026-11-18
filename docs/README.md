@@ -1,6 +1,7 @@
 # Safety sheets and instructions
 
-The landing page links to these files. To update one, replace the PDF and keep its file name.
+The landing pages link to these files: the English page to this folder, the Hebrew page to `he/`.
+To update one, replace the PDF and keep its file name. Each file exists in both languages.
 
 | Machine | Safety sheet | Instructions |
 | --- | --- | --- |
@@ -13,6 +14,7 @@ The landing page links to these files. To update one, replace the PDF and keep i
 | Bench power supplies and meters | `bench-power-safety.pdf` | `bench-power-instructions.pdf` |
 | Hand tools and hardware | `hand-tools-safety.pdf` | |
 
-All fourteen are **draft 0.1** and say so in their footer. They were written from the manufacturers' published
+All twenty-eight are **draft 0.1** and say so in their footer. They were written from the manufacturers' published
 data and general workshop practice, and must be reviewed and approved by the makerspace engineer before
-students rely on them. Photos are the makerspace's own.
+students rely on them. The Hebrew set is a translation of the English set and needs the same review, by a
+Hebrew-speaking engineer. Photos are the makerspace's own.

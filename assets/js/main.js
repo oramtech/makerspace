@@ -23,6 +23,11 @@
   var words = $('#words'), toast = $('#toast');
   var room = null, live = false, tourTop = 0, seg = 1, active = -1, dots = [];
 
+  /* interface strings; the Hebrew page (lang="he", dir="rtl") gets its own set and a mirrored layout */
+  var he = root.getAttribute('lang') === 'he', rtl = root.getAttribute('dir') === 'rtl', side = rtl ? -1 : 1;
+  var STR = he ? { overview: 'מבט על', play: 'הפעלת הטיסה', pause: 'השהיית הטיסה', goTo: 'מעבר לתחנה ' }
+               : { overview: 'Overview', play: 'Play the fly-through', pause: 'Pause the fly-through', goTo: 'Go to stop ' };
+
   function pad2(n) { return (n < 10 ? '0' : '') + n; }
   function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
 
@@ -54,12 +59,12 @@
   function setActive(i) {
     active = i;
     var onStop = i >= 1 && i <= N;
-    hudNo.textContent = onStop ? pad2(i) + ' / ' + pad2(N) : 'Overview';
+    hudNo.textContent = onStop ? pad2(i) + ' / ' + pad2(N) : STR.overview;
     dots.forEach(function (d, k) { d.classList.toggle('is-on', k + 1 === i); });
     prevBtn.disabled = i <= 0; nextBtn.disabled = i > N;
     if (room) {
       if (mqSmall.matches) room.setShift(0, i === 0 ? 0.12 : onStop ? 0.2 : 0);
-      else room.setShift(i === 0 ? 0.12 : onStop ? 0.17 : 0, i === 0 ? 0.12 : 0);
+      else room.setShift(side * (i === 0 ? 0.12 : onStop ? 0.17 : 0), i === 0 ? 0.12 : 0);
     }
   }
 
@@ -99,7 +104,7 @@
       b.style.left = 'calc(7px + (100% - 14px) * ' + p[0].toFixed(4) + ')';
       b.style.top = 'calc(7px + (100% - 14px) * ' + p[1].toFixed(4) + ')';
       var title = $('.card__title', stops[k]);
-      b.setAttribute('aria-label', 'Go to stop ' + (k + 1) + (title ? ': ' + title.textContent : ''));
+      b.setAttribute('aria-label', STR.goTo + (k + 1) + (title ? ': ' + title.textContent : ''));
       b.addEventListener('click', function () { fly(false); go(k + 1); });
       map.insertBefore(b, cam); dots.push(b);
     });
@@ -122,8 +127,8 @@
   function fly(on) {
     if (on === flying) return;
     flying = on; root.classList.toggle('is-flying', on);
-    $$('[data-fly]').forEach(function (b) { b.setAttribute('aria-pressed', on ? 'true' : 'false'); if (b.hasAttribute('aria-label')) b.setAttribute('aria-label', on ? 'Pause the fly-through' : 'Play the fly-through'); });
-    $$('[data-fly-label]').forEach(function (s) { s.textContent = on ? 'Pause the fly-through' : 'Play the fly-through'; });
+    $$('[data-fly]').forEach(function (b) { b.setAttribute('aria-pressed', on ? 'true' : 'false'); if (b.hasAttribute('aria-label')) b.setAttribute('aria-label', on ? STR.pause : STR.play); });
+    $$('[data-fly-label]').forEach(function (s) { s.textContent = on ? STR.pause : STR.play; });
     cancelAnimationFrame(flyRaf);
     if (on) {
       if (progress() > N - 0.05) go(0, true);

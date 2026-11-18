@@ -125,10 +125,10 @@ button { font: inherit; color: inherit; }
   -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2);
   box-shadow: 0 1px 0 var(--rule);
 }
-.brand { display: inline-flex; align-items: center; gap: 12px; margin-right: auto; text-decoration: none; }
+.brand { display: inline-flex; align-items: center; gap: 12px; margin-inline-end: auto; text-decoration: none; }
 .brand__mark { width: 38px; height: 20px; }
-.brand__name { font: 800 1.02rem/1 var(--display); font-stretch: 125%; letter-spacing: -.01em; }
-.nav__links { display: flex; gap: clamp(16px, 2.4vw, 34px); margin-right: 10px; }
+.brand__name { font: 800 1.02rem/1 var(--display); font-stretch: 125%; letter-spacing: -.01em; white-space: nowrap; }
+.nav__links { display: flex; gap: clamp(16px, 2.4vw, 34px); margin-inline-end: 10px; }
 .nav__links a {
   font-weight: 550; font-size: .96rem; text-decoration: none; padding: 8px 0;
   background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat; transition: background-size .2s ease;
@@ -308,7 +308,7 @@ a.row__where:hover { text-decoration: underline; text-underline-offset: 4px; }
 .foot__cols nav { display: grid; grid-template-columns: repeat(2, auto); gap: 8px 36px; align-content: start; }
 .foot__cols nav a { font-weight: 550; text-decoration: none; }
 .foot__cols nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
-.he { font-family: var(--he); font-weight: 600; font-size: 1.08rem; margin-top: 12px; text-align: left; }
+.he { font-family: var(--he); font-weight: 600; font-size: 1.08rem; margin-top: 12px; text-align: start; }
 .foot__hours { margin-top: 12px; font-weight: 650; }
 .foot__small { margin-top: 36px; font-size: .84rem; color: var(--ink-2); }
 
@@ -333,6 +333,43 @@ a.row__where:hover { text-decoration: underline; text-underline-offset: 4px; }
   transition: opacity .25s ease, transform .35s cubic-bezier(.2, .7, .2, 1);
 }
 .toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- language switch ---------- */
+.lang {
+  display: inline-flex; align-items: center; height: 36px; padding: 0 12px; border-radius: 10px; text-decoration: none;
+  font-weight: 650; font-size: .92rem; box-shadow: inset 0 0 0 1.5px var(--ink); transition: background-color .15s ease, color .15s ease;
+}
+.lang:hover { background: var(--ink); color: var(--wall); }
+.lang[lang="he"] { font-family: var(--he); font-size: 1rem; }
+
+/* ---------- RIGHT-TO-LEFT (Hebrew) ----------
+   Hebrew is set in Heebo; Latin names and numbers inside it fall through to Archivo.
+   The tour mirrors: cards on the right, plan and transport on the left. */
+html[lang="he"] {
+  --display: "Heebo", "Archivo", "Arial Hebrew", Arial, sans-serif;
+  --text: "Heebo", "Archivo", "Arial Hebrew", system-ui, Arial, sans-serif;
+}
+html[lang="he"] body { line-height: 1.55; }
+html[lang="he"] h1, html[lang="he"] h2, html[lang="he"] h3, html[lang="he"] .card__title { letter-spacing: -.01em; }
+html[lang="he"] .hero h1 { line-height: 1.02; font-weight: 900; }
+html[lang="he"] .block h2 { line-height: 1.05; font-weight: 900; }
+html[lang="he"] .brand__name, html[lang="he"] .foot__mark { font-family: "Archivo", sans-serif; direction: ltr; }
+html[lang="he"] .foot__mark { text-align: right; margin-left: 0; }
+html[lang="he"] .he { font-family: "Archivo", sans-serif; font-weight: 500; font-size: .98rem; direction: ltr; text-align: right; }
+html[dir="rtl"] .skip { left: auto; right: 12px; }
+html[dir="rtl"] .nav__links a { background-position: 100% 100%; }
+html[dir="rtl"] .stage__scrim { background: linear-gradient(to top left, color-mix(in srgb, var(--wall) 92%, transparent) 0%, color-mix(in srgb, var(--wall) 40%, transparent) 30%, transparent 56%); }
+html[dir="rtl"].no-webgl .stage__scrim { background: linear-gradient(to top left, color-mix(in srgb, var(--wall) 95%, transparent) 0%, color-mix(in srgb, var(--wall) 58%, transparent) 42%, color-mix(in srgb, var(--wall) 10%, transparent) 100%); }
+html[dir="rtl"] .stop { left: auto; right: var(--pad); }
+html[dir="rtl"] .card__list li { padding-left: 0; padding-right: 17px; }
+html[dir="rtl"] .card__list li::before { left: auto; right: 0; }
+html[dir="rtl"] .hud { right: auto; left: var(--pad); }
+html[dir="rtl"] .transport, html[dir="rtl"] .lightbox { direction: ltr; }
+html[dir="rtl"] .lightbox figcaption { direction: rtl; }
+html[dir="rtl"] .words { direction: ltr; }
+html[dir="rtl"] .words__note { direction: rtl; margin-left: auto; }
+html[dir="rtl"] .row:target, html[dir="rtl"] .row.is-target { background: linear-gradient(270deg, color-mix(in srgb, var(--yellow) 42%, transparent), transparent 72%); }
+html[dir="rtl"] .doc { padding: 0 12px 0 14px; }
 
 /* ---------- small screens ---------- */
 @media (max-width: 860px) {
@@ -389,7 +426,16 @@ a.row__where:hover { text-decoration: underline; text-underline-offset: 4px; }
   .lightbox[open] { grid-template-columns: 52px minmax(0, 1fr) 52px; }
 }
 @media (max-width: 860px) and (max-height: 640px) { .card__list { display: none; } }
-@media (max-width: 420px) { .brand__name { font-size: .92rem; } .row__where { font-size: .86rem; } }
+@media (max-width: 860px) {
+  html[dir="rtl"] .stage__scrim { background: linear-gradient(to top, color-mix(in srgb, var(--wall) 96%, transparent) 0%, color-mix(in srgb, var(--wall) 60%, transparent) 34%, transparent 62%); }
+  html[dir="rtl"] .stop { left: 10px; right: 10px; }
+  html[dir="rtl"] .card__photos, html[dir="rtl"] .card__photos:has(.shot:nth-child(2)) { right: auto; left: 14px; }
+  html[dir="rtl"] .card:has(.card__photos) .card__no, html[dir="rtl"] .card:has(.card__photos) .card__title { margin-right: 0; margin-left: 96px; }
+  html[dir="rtl"] .card__list li { padding: 3px 8px; }
+  html[dir="rtl"] .hud { left: 10px; right: auto; }
+  .lang { height: 34px; padding: 0 10px; }
+}
+@media (max-width: 480px) { .nav { gap: 4px; } .brand { gap: 8px; } .brand__mark { width: 30px; } .brand__name { font-size: .82rem; } .lang { padding: 0 8px; font-size: .84rem; } .row__where { font-size: .86rem; } }
 @media (min-width: 861px) and (max-height: 700px) { .card__list { display: none; } .card__photos { height: 120px; } }
 
 @media (prefers-reduced-motion: reduce) {

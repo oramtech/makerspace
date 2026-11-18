@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ME Makerspace · הסדנא לפרויקטים בלימודי הסמכה</title>
+<meta name="description" content="טיסה וירטואלית במייקרספייס של הנדסת מכונות: מדפסות תלת־ממד, כרסומת CNC, שולחן אלקטרוניקה ושני שולחנות בנייה. הורידו דפי בטיחות והוראות הפעלה, והתעדכנו בסדנאות הקרובות.">
+<meta name="theme-color" content="#cdd6d6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#162023" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="ME Makerspace · הסדנא לפרויקטים בלימודי הסמכה">
+<meta property="og:description" content="טוסו בחדר, מצאו מכונה, הורידו את דף הבטיחות שלה.">
+<meta property="og:image" content="../assets/img/og.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ffc61a'/%3E%3Cpath d='M5 10h22v12H17m-5 0H5z' fill='none' stroke='%23141a1c' stroke-width='2.2'/%3E%3Cpath d='M10 10v7m11-7v7' stroke='%23141a1c' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="preload" href="../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="alternate" hreflang="en" href="../">
+<link rel="alternate" hreflang="he" href="./">
+<link rel="stylesheet" href="../assets/css/main.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body id="top">
+
+<a class="skip" href="#machines">דלגו על הטיסה</a>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" dir="ltr">
+    <svg class="brand__mark" viewBox="0 0 34 18" aria-hidden="true"><path d="M1.5 1.5h31v15H17.5m-6 0h-10z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 1.5v9m15-9v9" stroke="currentColor" stroke-width="3.4"/><path d="M14.5 2.5h4v4h-4z" fill="var(--yellow)" stroke="currentColor" stroke-width="1.2"/></svg>
+    <span class="brand__name">ME Makerspace</span>
+  </a>
+  <nav class="nav__links" id="links" aria-label="ראשי">
+    <a href="#room">החדר</a>
+    <a href="#machines">מכונות ובטיחות</a>
+    <a href="#workshops">סדנאות</a>
+    <a href="#nitai">ניתאי</a>
+  </nav>
+  <a class="lang" href="../" lang="en" hreflang="en">English</a>
+  <button class="icon-btn" id="theme" type="button" aria-label="מעבר בין מצב בהיר לכהה">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg>
+  </button>
+  <button class="icon-btn nav__menu" id="menu" type="button" aria-expanded="false" aria-controls="links" aria-label="תפריט">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+  </button>
+</header>
+
+<main>
+
+<!-- ======================================================================
+     THE ROOM: a pinned 3D stage. Scrolling flies the camera from stop to stop.
+     ====================================================================== -->
+<section class="tour" id="room" aria-label="טיסה בחדר">
+  <div class="stage" id="stage">
+    <canvas id="scene" data-plan="../assets/img/plan-full.webp" aria-hidden="true"></canvas>
+    <img class="stage__photo" src="../assets/img/room-wide-1600.webp" alt="המייקרספייס: שולחן בנייה ארוך עם כיסאות, עגלת כלים וקיר ארונות מתחת לכיתוב OMG!" width="1600" height="900">
+    <div class="stage__scrim" aria-hidden="true"></div>
+
+    <div class="hero" id="hero">
+      <h1>בונים את מה ששרטטתם.</h1>
+      <p class="hero__lede">זוהי הסדנא לפרויקטים בלימודי הסמכה של הפקולטה להנדסת מכונות. ארבע מדפסות תלת־ממד, כרסומת CNC, שולחן אלקטרוניקה ושני שולחנות בנייה ארוכים, הכול בחדר אחד. פתוח 08:00–15:00. גללו כדי לטוס בו.</p>
+      <div class="hero__cta">
+        <button class="btn btn--go" type="button" data-fly>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-play" d="M8 5.5v13l11-6.5z" fill="currentColor"/><path class="i-pause" d="M7 5h4v14H7zm6 0h4v14h-4z" fill="currentColor"/></svg>
+          <span data-fly-label>הפעלת הטיסה</span>
+        </button>
+        <a class="btn btn--quiet" href="#machines">מצאו מכונה</a>
+      </div>
+    </div>
+    <p class="cue" aria-hidden="true"><span></span>גללו כדי לטוס</p>
+
+    <ol class="stops" id="stops">
+
+      <li class="stop" data-stop="1">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="../assets/img/door-1600.webp"><img src="../assets/img/door-sm.webp" alt="דלת זכוכית עם שלט: הסדנא לפרויקטים בלימודי הסמכה, בעברית ובאנגלית" width="640" height="1138" decoding="async"></button>
+            <button class="shot" type="button" data-full="../assets/img/fasteners-1600.webp"><img src="../assets/img/fasteners-sm.webp" alt="קיר של תאים שקופים מלאים בברגים, עם תוויות בכתב יד: M3×40, ‏M4×50 וכן הלאה" width="640" height="1138" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>01</b><span>מתוך 10</span></p>
+            <h2 class="card__title">דלת הכניסה</h2>
+            <p class="card__text">היכנסו דרך הדלת הכפולה. הארון הגבוה שלידה הוא קיר הברגים: תאים של ברגי M3, ‏M4 ו־M5, ממוינים לפי אורך ומסומנים לפי סוג הראש.</p>
+            <ul class="card__list">
+              <li>ברגי אלן וברגים שקועי ראש</li>
+              <li>M3 עד M5, באורך 5 עד 50&nbsp;מ״מ</li>
+            </ul>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="2">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="../assets/img/electronics-bench-1600.webp"><img src="../assets/img/electronics-bench-sm.webp" alt="שולחן אלון ארוך עם שישה כיסאות, שני ספקי כוח וארונות קיר חלביים מעליו" width="760" height="428" decoding="async"></button>
+            <button class="shot" type="button" data-full="../assets/img/meters-1600.webp"><img src="../assets/img/meters-sm.webp" alt="מדף בארון ועליו שני רבי־מודדים אדומים, שני מאזניים דיגיטליים וקופסאות של ערכות אלקטרוניקה" width="760" height="428" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>02</b><span>מתוך 10</span></p>
+            <h2 class="card__title">שולחן האלקטרוניקה</h2>
+            <p class="card__text">שולחן לכל רוחב החדר, עם שקעים בכל מקום ישיבה. שני ספקי כוח מתכווננים עומדים על המשטח; רבי־מודדים, מאזניים וערכות אלקטרוניקה נמצאים בארונות שמעליו.</p>
+            <ul class="card__list">
+              <li>ספקי כוח DC מתכווננים</li>
+              <li>רבי־מודדים דיגיטליים</li>
+              <li>מאזניים דיגיטליים קומפקטיים</li>
+              <li>ערכות של כרטיסים, חוטי גישור ורכיבים</li>
+            </ul>
+            <a class="card__link" href="#m-power">דף בטיחות והוראות הפעלה</a>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="3">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="../assets/img/solder-corner-1600.webp"><img src="../assets/img/solder-corner-sm.webp" alt="שולחן פינתי עם שואב אדים, ששתי זרועותיו השחורות נמתחות מעל שתי עמדות הלחמה" width="760" height="428" decoding="async"></button>
+            <button class="shot" type="button" data-full="../assets/img/hakko-1600.webp"><img src="../assets/img/hakko-sm.webp" alt="עמדת הלחמה Hakko FX-888D בכחול וצהוב, מתחת לפיית שואב האדים" width="640" height="1138" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>03</b><span>מתוך 10</span></p>
+            <h2 class="card__title">פינת ההלחמה</h2>
+            <p class="card__text">שתי עמדות Hakko FX-888D חולקות שואב אדים אחד, עם זרוע גמישה לכל מלחם. כוונו את הטמפרטורה, משכו את הזרוע אל מעל העבודה והלחימו.</p>
+            <ul class="card__list">
+              <li>עמדות הלחמה Hakko FX-888D</li>
+              <li>שואב אדים עם שתי זרועות</li>
+              <li>משטח חיתוך בכל עמדה</li>
+            </ul>
+            <a class="card__link" href="#m-solder">דף בטיחות והוראות הפעלה</a>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="4">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="../assets/img/table-window-1600.webp"><img src="../assets/img/table-window-sm.webp" alt="שולחן בנייה מאלון עם משטחי חיתוך, כיסאות שחורים וסט מברגים בקצה שליד הקיר" width="640" height="1138" decoding="async"></button>
+            <button class="shot" type="button" data-full="../assets/img/table-omg-1600.webp"><img src="../assets/img/table-omg-sm.webp" alt="שולחן הבנייה השני מתחת למדף העילי ולתאורה הקווית, ומאחוריו המשרד השקוף" width="640" height="1138" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>04</b><span>מתוך 10</span></p>
+            <h2 class="card__title">שולחנות הבנייה</h2>
+            <p class="card__text">שני שולחנות, שמונה מקומות בכל אחד. בכל מקום יש משטח חיתוך, יש שקעים בשולחן, וסט מברגים מחכה בקצה שליד הקיר. המדפים העיליים נושאים את התאורה ואת מזוודות הכלים.</p>
+            <ul class="card__list">
+              <li>16 מקומות בשני שולחנות</li>
+              <li>משטח חיתוך בכל מקום</li>
+              <li>סטים של מברגים וביטים</li>
+            </ul>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="5">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="../assets/img/drawers-1600.webp"><img src="../assets/img/drawers-sm.webp" alt="מגירות פתוחות בעגלת הכלים של Beta: מברגים, מפתחות ובוקסות, כל כלי בשקע ספוג משלו" width="640" height="1138" decoding="async"></button>
+            <button class="shot" type="button" data-full="../assets/img/drawers-close-1600.webp"><img src="../assets/img/drawers-close-sm.webp" alt="מבט מקרוב על ידיות רצ׳ט, בוקסות ומפתחות טבעת, מסודרים לפי גודל בספוג כתום ושחור" width="640" height="1138" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>05</b><span>מתוך 10</span></p>
+            <h2 class="card__title">כלי עבודה ידניים</h2>
+            <p class="card__text">עגלת הכלים של Beta מגיעה לכל מקום שעובדים בו. לכל בוקסה, מפתח ומברג יש שקע משלו בספוג, כך שרואים במבט אחד מה חסר לפני שעוזבים.</p>
+            <ul class="card__list">
+              <li>ידיות רצ׳ט 1/2″ ו־1/4″, בוקסות עד 32&nbsp;מ״מ</li>
+              <li>מפתחות משולבים ומפתחות טבעת</li>
+              <li>מברגים, ביטים של אלן וטורקס</li>
+            </ul>
+            <a class="card__link" href="#m-tools">דף בטיחות והוראות הפעלה</a>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="6">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="../assets/img/filament-1600.webp"><img src="../assets/img/filament-sm.webp" alt="ארונות קיר חלביים מלאים בקופסאות פילמנט, מתחת לכיתוב OMG! גדול" width="760" height="428" decoding="async"></button>
+            <button class="shot" type="button" data-full="../assets/img/room-wide-1600.webp"><img src="../assets/img/room-wide-sm.webp" alt="מבט רחב על החדר: שולחן בנייה, עגלת כלים וקיר החומרים בקצה" width="760" height="428" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>06</b><span>מתוך 10</span></p>
+            <h2 class="card__title">קיר החומרים</h2>
+            <p class="card__text">הפילמנט למדפסות מאוחסן בקופסאות לפי צבע, בארונות שמתחת ל־OMG! הגדול. מתחתיהם יש שולחן עבודה נוסף, עם שקעים לכל אורכו.</p>
+            <ul class="card__list">
+              <li>פילמנט, ממוין לפי צבע</li>
+              <li>משטח עבודה נוסף</li>
+              <li>אוויר דחוס על העמוד</li>
+            </ul>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="7">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="../assets/img/printers-1600.webp"><img src="../assets/img/printers-sm.webp" alt="שורה של ארבע מדפסות Bambu Lab H2D כהות, ועל כל אחת יחידת פילמנט" width="760" height="428" decoding="async"></button>
+            <button class="shot" type="button" data-full="../assets/img/fab-wall-1600.webp"><img src="../assets/img/fab-wall-sm.webp" alt="קיר המכונות: ארבע מדפסות תלת־ממד, מחשב עם שני כיסאות וכרסומת ה־CNC ליד החלון" width="760" height="428" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>07</b><span>מתוך 10</span></p>
+            <h2 class="card__title">מדפסות תלת־ממד</h2>
+            <p class="card__text">ארבע מדפסות Bambu Lab H2D, ועל כל אחת יחידת AMS&nbsp;2&nbsp;Pro שמזינה ומחליפה פילמנט במהלך ההדפסה. על אותו שולחן יש מחשב, ומתחתיו מגירות אחסון.</p>
+            <ul class="card__list">
+              <li>4 × Bambu Lab H2D</li>
+              <li>מזיני AMS 2 Pro לריבוי חומרים</li>
+              <li>מחשב ליד המדפסות</li>
+            </ul>
+            <a class="card__link" href="#m-printers">דף בטיחות והוראות הפעלה</a>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="8">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="../assets/img/cnc-spindle-1600.webp"><img src="../assets/img/cnc-spindle-sm.webp" alt="ציר של Tormach אוחז כרסום בציפוי כחול, מעל שולחן הכרסומת" width="640" height="853" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>08</b><span>מתוך 10</span></p>
+            <h2 class="card__title">כרסומת CNC</h2>
+            <p class="card__text">כרסומת Tormach xsTECH Pro בתוך תא סגור, לחלקים שמדפסת לא יכולה לייצר: לוחות, כיסים ופרופילים. לידה יש חיבור לאוויר דחוס.</p>
+            <ul class="card__list">
+              <li>Tormach xsTECH Pro</li>
+              <li>תא סגור לגמרי, עם מודד כלים</li>
+              <li>אוויר דחוס ליד המכונה</li>
+            </ul>
+            <a class="card__link" href="#m-cnc">דף בטיחות והוראות הפעלה</a>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="9">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="../assets/img/drill-1600.webp"><img src="../assets/img/drill-sm.webp" alt="מקדחת שולחן ירוקה Bosch PBD 40 עם גלגל הזנה גדול, לצד מעמד מברגים" width="640" height="1138" decoding="async"></button>
+            <button class="shot" type="button" data-full="../assets/img/drill-bench-1600.webp"><img src="../assets/img/drill-bench-sm.webp" alt="שולחן ליד החלון ועליו המקדחה, מסור שולחן קטן של Proxxon ושואב אבק מתחתיו" width="640" height="1138" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>09</b><span>מתוך 10</span></p>
+            <h2 class="card__title">מקדחת שולחן ומסור</h2>
+            <p class="card__text">מקדחת השולחן Bosch PBD&nbsp;40 מציגה את המהירות ואת עומק הקידוח על צג. לידה מסור שולחן של Proxxon לחיתוכים קטנים ומדויקים, ומתחת לשולחן שואב אבק לשבבים.</p>
+            <ul class="card__list">
+              <li>מקדחת שולחן Bosch PBD 40</li>
+              <li>מסור שולחן Proxxon</li>
+              <li>שואב אבק</li>
+            </ul>
+            <a class="card__link" href="#m-drill">דף בטיחות והוראות הפעלה</a>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="10">
+        <article class="card">
+          <div class="card__body">
+            <p class="card__no"><b>10</b><span>מתוך 10</span></p>
+            <h2 class="card__title">המשרד</h2>
+            <p class="card__text">בחדר הזכוכית שבין שני שולחנות הבנייה תמצאו את ניתאי ביבר, המהנדס שמנהל את המייקרספייס. לא בטוחים איזו מכונה מתאימה לעבודה? דפקו בדלת.</p>
+            <a class="card__link card__link--to" href="#nitai">הכירו את ניתאי</a>
+          </div>
+        </article>
+      </li>
+
+    </ol>
+
+    <aside class="hud" id="hud" aria-label="איפה אתם בחדר">
+      <div class="map" id="map">
+        <div class="map__plan" aria-hidden="true"></div>
+        <svg class="map__cam" id="cam" viewBox="-20 -20 40 40" aria-hidden="true"><path d="M0 0L-9-17A19 19 0 0 1 9-17z" fill="var(--yellow)" opacity=".55"/><circle r="4.2" fill="var(--yellow)" stroke="var(--on-yellow)" stroke-width="1.6"/></svg>
+      </div>
+      <div class="transport">
+        <button class="icon-btn" type="button" id="prev" aria-label="התחנה הקודמת"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <span class="transport__no" id="hudNo" aria-live="polite">מבט על</span>
+        <button class="icon-btn" type="button" id="next" aria-label="התחנה הבאה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="icon-btn icon-btn--go" type="button" data-fly aria-label="הפעלת הטיסה"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-play" d="M8 5.5v13l11-6.5z" fill="currentColor"/><path class="i-pause" d="M7 5h4v14H7zm6 0h4v14h-4z" fill="currentColor"/></svg></button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- the scroll distance that drives the flight; one segment per stop -->
+  <div class="tour__track" id="track" aria-hidden="true"></div>
+  <span class="tour__mark" id="stop-1" style="--i:1"></span>
+  <span class="tour__mark" id="stop-2" style="--i:2"></span>
+  <span class="tour__mark" id="stop-3" style="--i:3"></span>
+  <span class="tour__mark" id="stop-4" style="--i:4"></span>
+  <span class="tour__mark" id="stop-5" style="--i:5"></span>
+  <span class="tour__mark" id="stop-6" style="--i:6"></span>
+  <span class="tour__mark" id="stop-7" style="--i:7"></span>
+  <span class="tour__mark" id="stop-8" style="--i:8"></span>
+  <span class="tour__mark" id="stop-9" style="--i:9"></span>
+  <span class="tour__mark" id="stop-10" style="--i:10"></span>
+</section>
+
+<!-- ======================================================================
+     What the walls say
+     ====================================================================== -->
+<section class="words" aria-label="מה כתוב על הקירות">
+  <div class="words__strip" id="words" aria-hidden="true">
+    <span class="w w--a">oops!</span><span class="w w--b">OMG!</span><span class="w w--c">what?!</span><span class="w w--d">ouch</span><span class="w w--a">oops!</span><span class="w w--b">OMG!</span><span class="w w--c">what?!</span><span class="w w--d">ouch</span>
+  </div>
+  <p class="words__note">לא במקרה זה כתוב אצלנו על כל הקירות. כאן דברים משתבשים כל יום, וככה הם מתחילים לעבוד בסוף. הדפים שלמטה דואגים שהטעויות יישארו קטנות.</p>
+</section>
+
+<!-- ======================================================================
+     Machines and safety. The PDFs live in /docs.
+     ====================================================================== -->
+<section class="block" id="machines">
+  <header class="block__head">
+    <h2>קוראים לפני שמפעילים.</h2>
+    <p>לכל מכונה בחדר יש דף בטיחות והוראות הפעלה. הורידו את שניהם לפני הפעם הראשונה.</p>
+  </header>
+
+  <ul class="index">
+    <li class="row" id="m-rules">
+      <div class="row__what"><h3>כללי הסדנא</h3><p>לכולם, בכל ביקור</p></div>
+      <span class="row__where row__where--none">כל החדר</span>
+      <div class="row__docs">
+        <a class="doc" href="../docs/he/workshop-rules.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>כללי הסדנא <small>PDF</small></a>
+      </div>
+    </li>
+    <li class="row" id="m-printers">
+      <div class="row__what"><h3>מדפסות תלת־ממד</h3><p>Bambu Lab H2D, ארבע מכונות</p></div>
+      <a class="row__where" href="#stop-7"><b>07</b>הצגה בחדר</a>
+      <div class="row__docs">
+        <a class="doc" href="../docs/he/3d-printers-safety.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>דף בטיחות <small>PDF</small></a>
+        <a class="doc" href="../docs/he/3d-printers-instructions.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>הוראות הפעלה <small>PDF</small></a>
+      </div>
+    </li>
+    <li class="row" id="m-cnc">
+      <div class="row__what"><h3>כרסומת CNC</h3><p>Tormach xsTECH Pro</p></div>
+      <a class="row__where" href="#stop-8"><b>08</b>הצגה בחדר</a>
+      <div class="row__docs">
+        <a class="doc" href="../docs/he/cnc-router-safety.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>דף בטיחות <small>PDF</small></a>
+        <a class="doc" href="../docs/he/cnc-router-instructions.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>הוראות הפעלה <small>PDF</small></a>
+      </div>
+    </li>
+    <li class="row" id="m-drill">
+      <div class="row__what"><h3>מקדחת שולחן</h3><p>Bosch PBD 40</p></div>
+      <a class="row__where" href="#stop-9"><b>09</b>הצגה בחדר</a>
+      <div class="row__docs">
+        <a class="doc" href="../docs/he/bench-drill-safety.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>דף בטיחות <small>PDF</small></a>
+        <a class="doc" href="../docs/he/bench-drill-instructions.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>הוראות הפעלה <small>PDF</small></a>
+      </div>
+    </li>
+    <li class="row" id="m-saw">
+      <div class="row__what"><h3>מסור שולחן</h3><p>Proxxon</p></div>
+      <a class="row__where" href="#stop-9"><b>09</b>הצגה בחדר</a>
+      <div class="row__docs">
+        <a class="doc" href="../docs/he/table-saw-safety.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>דף בטיחות <small>PDF</small></a>
+        <a class="doc" href="../docs/he/table-saw-instructions.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>הוראות הפעלה <small>PDF</small></a>
+      </div>
+    </li>
+    <li class="row" id="m-solder">
+      <div class="row__what"><h3>עמדות הלחמה</h3><p>Hakko FX-888D, עם שאיבת אדים</p></div>
+      <a class="row__where" href="#stop-3"><b>03</b>הצגה בחדר</a>
+      <div class="row__docs">
+        <a class="doc" href="../docs/he/soldering-safety.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>דף בטיחות <small>PDF</small></a>
+        <a class="doc" href="../docs/he/soldering-instructions.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>הוראות הפעלה <small>PDF</small></a>
+      </div>
+    </li>
+    <li class="row" id="m-power">
+      <div class="row__what"><h3>ספקי כוח</h3><p>ספקי DC מתכווננים ורבי־מודדים</p></div>
+      <a class="row__where" href="#stop-2"><b>02</b>הצגה בחדר</a>
+      <div class="row__docs">
+        <a class="doc" href="../docs/he/bench-power-safety.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>דף בטיחות <small>PDF</small></a>
+        <a class="doc" href="../docs/he/bench-power-instructions.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>הוראות הפעלה <small>PDF</small></a>
+      </div>
+    </li>
+    <li class="row" id="m-tools">
+      <div class="row__what"><h3>כלי עבודה ידניים</h3><p>עגלת כלים של Beta וסטים של מברגים</p></div>
+      <a class="row__where" href="#stop-5"><b>05</b>הצגה בחדר</a>
+      <div class="row__docs">
+        <a class="doc" href="../docs/he/hand-tools-safety.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>דף בטיחות <small>PDF</small></a>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ======================================================================
+     Workshops. The three topics are placeholders until real sessions exist.
+     ====================================================================== -->
+<section class="block" id="workshops">
+  <header class="block__head">
+    <h2>לומדים מכונה באחר צהריים אחד.</h2>
+    <p>מדי פעם אנחנו מקיימים בחדר סדנאות מעשיות. התאריכים החדשים מתפרסמים כאן קודם.</p>
+  </header>
+  <div class="sessions">
+    <article class="session">
+      <img src="../assets/img/printers-sm.webp" alt="" width="760" height="428" loading="lazy" decoding="async">
+      <div class="session__body">
+        <p class="session__when">התאריך יפורסם</p>
+        <h3>הדפסת תלת־ממד: מקובץ לחלק ראשון</h3>
+        <p>פורסים מודל, טוענים פילמנט ומתחילים הדפסה ראשונה במדפסות ה־Bambu.</p>
+      </div>
+    </article>
+    <article class="session">
+      <img src="../assets/img/cnc-spindle-sm.webp" alt="" width="640" height="853" loading="lazy" decoding="async">
+      <div class="session__body">
+        <p class="session__when">התאריך יפורסם</p>
+        <h3>כרסום CNC: החיתוך הראשון</h3>
+        <p>מהדקים את חומר הגלם, מגדירים את הכלי ומריצים פרופיל פשוט בכרסומת ה־Tormach.</p>
+      </div>
+    </article>
+    <article class="session">
+      <img src="../assets/img/solder-corner-sm.webp" alt="" width="760" height="428" loading="lazy" decoding="async">
+      <div class="session__body">
+        <p class="session__when">התאריך יפורסם</p>
+        <h3>הלחמה: בונים מעגל שעובד</h3>
+        <p>מצפים בבדיל, מלחימים ובודקים את ההלחמות בעמדות ה־Hakko, ואז מחברים את המעגל למתח.</p>
+      </div>
+    </article>
+  </div>
+  <a class="btn btn--quiet" href="workshops.html" data-soon="עמוד הסדנאות הוא הבא בתור לבנייה.">לכל הסדנאות</a>
+</section>
+
+<!-- ======================================================================
+     Nitai
+     ====================================================================== -->
+<section class="block person" id="nitai">
+  <div class="person__tile" aria-hidden="true"><span>NB</span></div>
+  <div class="person__text">
+    <h2>בניהולו של ניתאי ביבר.</h2>
+    <p>ניתאי הוא המהנדס שמנהל את המייקרספייס. פנו אליו כשאתם לא בטוחים איזה כלי מתאים לעבודה, או איך להפעיל מכונה בבטחה.</p>
+    <a class="btn btn--quiet" href="nitai.html" data-soon="העמוד של ניתאי הוא הבא בתור לבנייה.">הכירו את ניתאי</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <p class="foot__mark" aria-hidden="true">ME Makerspace</p>
+  <div class="foot__cols">
+    <div>
+      <p>הסדנא לפרויקטים בלימודי הסמכה<br>הפקולטה להנדסת מכונות<br>הטכניון – מכון טכנולוגי לישראל</p>
+      <p class="foot__hours">פתוח 08:00–15:00</p>
+      <p class="he" lang="en" dir="ltr">Undergraduate Projects Workshop</p>
+    </div>
+    <nav aria-label="תחתית העמוד">
+      <a href="#room">החדר</a>
+      <a href="#machines">מכונות ובטיחות</a>
+      <a href="#workshops">סדנאות</a>
+      <a href="#nitai">ניתאי</a>
+    </nav>
+  </div>
+  <p class="foot__small">© 2026 הפקולטה להנדסת מכונות</p>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-label="תמונה">
+  <button class="icon-btn lightbox__x" type="button" data-close aria-label="סגירת התמונה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+  <button class="icon-btn lightbox__nav lightbox__nav--prev" type="button" data-step="-1" aria-label="התמונה הקודמת"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <figure>
+    <img id="lightboxImg" alt="">
+    <figcaption id="lightboxCap"></figcaption>
+  </figure>
+  <button class="icon-btn lightbox__nav lightbox__nav--next" type="button" data-step="1" aria-label="התמונה הבאה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="../assets/vendor/three.min.js"></script>
+<script src="../assets/js/room.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
