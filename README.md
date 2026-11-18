@@ -36,6 +36,12 @@ docs/                      safety sheets and instructions (PDF) go here
 - **Nitai.** The section shows initials. To use a photo, replace the `<div class="person__tile">` with an `<img>`.
 - **Opening hours.** 08:00–15:00, shown in the hero, the footer and the PDFs. Days, location and contact details are not on the page yet.
 
+## After you change CSS or JavaScript
+
+Both pages load `main.css`, `room.js` and `main.js` with a version stamp, for example `main.css?v=1a2b3c4d`.
+Browsers keep these files for a while, so after editing one of them change the stamp to any new value
+in `index.html` and `he/index.html`. Otherwise visitors may go on seeing the old version.
+
 ## Editing the 3D room
 
 `assets/js/room.js` is commented. Units are metres, measured off the architect's plan
