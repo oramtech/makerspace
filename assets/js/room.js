@@ -544,22 +544,30 @@
     B.tube([[x - 0.14, y + 0.5, z + 0.06], [x - 0.2, y + 0.3, z + 0.12], [x - 0.24, y + 0.06, z + 0.2], [x - 0.3, y + 0.02, z + 0.3]], 0.005, '#151618', { b: 'gloss', seg: 20 });
   }
 
-  function saw(B, z) {                                // small precision table saw
-    var x = 0.38, y = 0.9;
+  function sander(B, z) {
+    /* Small table belt sander, modelled on the one in the room: olive body about 25 x 20 cm, aluminium table in front,
+       the belt standing on edge along the back of the table under a black cover, dust port on the left, switch on the right. */
+    var x = 0.38, y = 0.9, ol = '#5d6b3c', bk = '#17181a', i;
     B.at(x, z);
-    B.box(0.52, 0.004, 0.46, x + 0.03, y, z + 0.03, '#ecece6');                                     // white cutting mat
-    B.rbox(0.28, 0.125, 0.3, x, y + 0.004, z, '#5d7340', { r: 0.012, b: 'gloss' });
-    B.box(0.286, 0.012, 0.306, x, y + 0.115, z, '#e0cf1e', G);
-    B.box(0.3, 0.012, 0.32, x, y + 0.129, z, '#d3d7da', ME);                                         // table and extension
-    B.box(0.3, 0.012, 0.1, x, y + 0.129, z + 0.21, '#d3d7da', ME);
-    B.cyl(0.042, 0.003, x, y + 0.141, z - 0.02, '#aeb4b9', { axis: 'z', seg: 22, b: 'metal' });     // blade and guard
-    B.rbox(0.11, 0.045, 0.022, x, y + 0.146, z - 0.02, '#e3ea7c', { r: 0.006, b: 'smoke' });
-    B.box(0.3, 0.03, 0.018, x, y + 0.141, z + 0.1, '#c4c9cd', ME);                                   // rip fence
-    B.box(0.05, 0.03, 0.1, x + 0.1, y + 0.141, z - 0.11, '#c4c9cd', { ry: 0.3, b: 'metal' });        // mitre gauge
-    B.rbox(0.012, 0.06, 0.07, x + 0.145, y + 0.03, z + 0.08, '#151618', { r: 0.004, b: 'gloss' });   // switch
-    B.box(0.004, 0.02, 0.022, x + 0.152, y + 0.055, z + 0.065, C.green, G); B.box(0.004, 0.02, 0.022, x + 0.152, y + 0.055, z + 0.095, C.red, G);
-    B.cyl(0.02, 0.025, x + 0.153, y + 0.06, z - 0.07, '#151618', { axis: 'x', seg: 12, b: 'gloss' });
-    B.cyl(0.022, 0.08, x - 0.06, y + 0.07, z - 0.19, '#151618', { axis: 'z', seg: 12, b: 'gloss' }); // dust port
+    B.box(0.52, 0.004, 0.46, x + 0.03, y, z + 0.03, '#ecece6');                                      // white cutting mat
+    B.rbox(0.215, 0.022, 0.262, x, y + 0.004, z, ol, { r: 0.008, b: 'satin' });                      // foot
+    B.rbox(0.19, 0.125, 0.25, x - 0.005, y + 0.022, z, ol, { r: 0.01, b: 'satin' });                 // body
+    B.box(0.2, 0.006, 0.256, x - 0.002, y + 0.147, z, '#d9d23c', G);                                 // yellow line under the table
+    B.box(0.15, 0.008, 0.215, x + 0.024, y + 0.153, z - 0.012, '#d5d9dc', ME);                       // table
+    B.rbox(0.055, 0.078, 0.075, x - 0.078, y + 0.153, z + 0.095, bk, { r: 0.014, b: 'gloss' });      // drive housing
+    B.rbox(0.042, 0.02, 0.215, x - 0.08, y + 0.214, z - 0.005, bk, { r: 0.008, b: 'gloss' });        // top cover over the belt
+    B.cyl(0.021, 0.055, x - 0.08, y + 0.161, z - 0.108, bk, { seg: 12, b: 'gloss' });                // idler roller
+    B.box(0.012, 0.05, 0.165, x - 0.066, y + 0.162, z - 0.018, '#b9b6ae');                           // net belt on its perforated support
+    for (i = 0; i < 7; i++) B.box(0.004, 0.011, 0.011, x - 0.0575, y + 0.172 + (i % 2) * 0.019, z - 0.085 + i * 0.022, '#6a6761');
+    B.cyl(0.021, 0.075, x - 0.07, y + 0.172, z + 0.168, bk, { axis: 'z', seg: 14, b: 'gloss' });     // dust port
+    B.cyl(0.014, 0.022, x - 0.02, y + 0.128, z + 0.136, bk, { axis: 'z', seg: 10, b: 'gloss' });     // locking knob
+    B.box(0.1, 0.03, 0.02, x + 0.03, y + 0.161, z - 0.088, '#d5d9dc', ME);                            // angle stop
+    B.box(0.05, 0.008, 0.012, x + 0.02, y + 0.195, z - 0.088, bk, G);
+    B.box(0.004, 0.06, 0.07, x + 0.092, y + 0.052, z + 0.0, '#141516', G);                            // rating plate with its yellow stripe
+    B.box(0.004, 0.06, 0.012, x + 0.092, y + 0.052, z + 0.044, C.yellow, G);
+    B.rbox(0.022, 0.062, 0.036, x + 0.099, y + 0.04, z - 0.092, '#141516', { r: 0.004, b: 'gloss' });  // switch: on above, off below
+    B.box(0.006, 0.02, 0.024, x + 0.112, y + 0.074, z - 0.092, '#b5c832', G); B.box(0.006, 0.02, 0.024, x + 0.112, y + 0.046, z - 0.092, C.red, G);
+    B.tube([[x - 0.02, y + 0.035, z + 0.128], [x + 0.0, y + 0.012, z + 0.2], [x + 0.09, y + 0.012, z + 0.26], [x + 0.16, y + 0.012, z + 0.21]], 0.005, '#151618', { b: 'gloss', seg: 16 });
   }
 
   function solderStation(B, x, z, ry) {               // soldering station and iron stand; front faces local +Z
@@ -789,7 +797,7 @@
     B.at(0.35, 8.75); drawerUnit(B, 0.34, 8.75, 0.76);
     B.at(0.35, 11.0); drawerUnit(B, 0.34, 11.02, 0.76);
     B.at(0.35, 12.2); drawerUnit(B, 0.34, 12.2, 0.76);
-    saw(B, 6.35);
+    sander(B, 6.35);
     drill(B, 6.95);
     B.at(0.3, 7.45); kendo(B, 0.2, 7.42, Math.PI / 2);
     B.rbox(0.15, 0.02, 0.42, 0.5, 0.9, 7.92, '#18191b', { r: 0.006, b: 'gloss' });                                                  // keyboard for the router
@@ -816,7 +824,7 @@
     B.at(0.4, 9.5);
     pendant(B, 0.75, 6.4, 0.75, 8.6, 2.55, H); pendant(B, 0.75, 9.0, 0.75, 10.9, 2.55, H); pendant(B, 0.75, 11.3, 0.75, 12.8, 2.55, H);
     B.pool(0.42, 0.914, 7.5, 0.85, 2.8, 0.24); B.pool(0.42, 0.914, 9.95, 0.85, 2.5, 0.24);
-    /* shop vac and bin under the saw */
+    /* shop vac and bin under the sander */
     B.at(0.4, 6.4);
     B.cyl(0.16, 0.4, 0.36, 0.07, 6.5, '#1d2023', { seg: 18, b: 'gloss' }); B.cyl(0.165, 0.09, 0.36, 0.44, 6.5, '#1c7a5a', { seg: 18, b: 'gloss' });
     B.cyl(0.05, 0.05, 0.36, 0.53, 6.5, '#18191b', { seg: 12, b: 'gloss' }); B.rbox(0.2, 0.025, 0.04, 0.36, 0.58, 6.5, '#18191b', { r: 0.008, b: 'gloss' });

@@ -9,7 +9,7 @@ To update one, replace the PDF and keep its file name. Each file exists in both 
 | 3D printers (Bambu Lab H2D) | `3d-printers-safety.pdf` | `3d-printers-instructions.pdf` |
 | CNC router (Tormach xsTECH Pro) | `cnc-router-safety.pdf` | `cnc-router-instructions.pdf` |
 | Bench drill (Bosch PBD 40) | `bench-drill-safety.pdf` | `bench-drill-instructions.pdf` |
-| Table saw (Proxxon FET) | `table-saw-safety.pdf` | `table-saw-instructions.pdf` |
+| Belt sander (Proxxon TB 50) | `belt-sander-safety.pdf` | `belt-sander-instructions.pdf` |
 | Soldering stations (Hakko FX-888D) | `soldering-safety.pdf` | `soldering-instructions.pdf` |
 | Bench power supplies and meters | `bench-power-safety.pdf` | `bench-power-instructions.pdf` |
 | Hand tools and hardware | `hand-tools-safety.pdf` | |
