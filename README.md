@@ -25,13 +25,13 @@ docs/                      safety sheets and instructions (PDF) go here
 
 ## Things to fill in
 
-- **Safety sheets and instructions.** See `docs/README.md` for the file names the page expects.
-- **Links marked `data-soon`.** The Workshops and Nitai pages are not built yet, and the PDFs are not uploaded.
+- **Safety sheets and instructions.** Fourteen draft PDFs are in `docs/`. They need the engineer's review: see `docs/README.md`.
+- **Links marked `data-soon`.** The Workshops and Nitai pages are not built yet.
   Any link carrying a `data-soon="…"` attribute shows that message instead of navigating. Delete the attribute
   once the page or file exists.
 - **Workshops.** The three sessions on the landing page are placeholder topics with "Date to be announced".
 - **Nitai.** The section shows initials. To use a photo, replace the `<div class="person__tile">` with an `<img>`.
-- **Opening hours, location, contact.** Not on the page yet because they were not supplied.
+- **Opening hours.** 08:00–15:00, shown in the hero, the footer and the PDFs. Days, location and contact details are not on the page yet.
 
 ## Editing the 3D room
 

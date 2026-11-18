@@ -309,6 +309,7 @@ a.row__where:hover { text-decoration: underline; text-underline-offset: 4px; }
 .foot__cols nav a { font-weight: 550; text-decoration: none; }
 .foot__cols nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .he { font-family: var(--he); font-weight: 600; font-size: 1.08rem; margin-top: 12px; text-align: left; }
+.foot__hours { margin-top: 12px; font-weight: 650; }
 .foot__small { margin-top: 36px; font-size: .84rem; color: var(--ink-2); }
 
 /* lightbox and toast */

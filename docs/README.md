@@ -1,6 +1,6 @@
 # Safety sheets and instructions
 
-Drop the PDFs for each machine in this folder. The landing page already links to these file names:
+The landing page links to these files. To update one, replace the PDF and keep its file name.
 
 | Machine | Safety sheet | Instructions |
 | --- | --- | --- |
@@ -8,10 +8,11 @@ Drop the PDFs for each machine in this folder. The landing page already links to
 | 3D printers (Bambu Lab H2D) | `3d-printers-safety.pdf` | `3d-printers-instructions.pdf` |
 | CNC router (Tormach xsTECH Pro) | `cnc-router-safety.pdf` | `cnc-router-instructions.pdf` |
 | Bench drill (Bosch PBD 40) | `bench-drill-safety.pdf` | `bench-drill-instructions.pdf` |
-| Table saw (Proxxon) | `table-saw-safety.pdf` | `table-saw-instructions.pdf` |
+| Table saw (Proxxon FET) | `table-saw-safety.pdf` | `table-saw-instructions.pdf` |
 | Soldering stations (Hakko FX-888D) | `soldering-safety.pdf` | `soldering-instructions.pdf` |
-| Bench power supplies | `bench-power-safety.pdf` | `bench-power-instructions.pdf` |
-| Hand tools | `hand-tools-safety.pdf` | |
+| Bench power supplies and meters | `bench-power-safety.pdf` | `bench-power-instructions.pdf` |
+| Hand tools and hardware | `hand-tools-safety.pdf` | |
 
-Once a PDF is here, open `index.html`, find its link in the "Machines and safety" section and delete the
-`data-soon="…"` attribute. Until then, clicking the link shows a "not uploaded yet" notice instead of a broken download.
+All fourteen are **draft 0.1** and say so in their footer. They were written from the manufacturers' published
+data and general workshop practice, and must be reviewed and approved by the makerspace engineer before
+students rely on them. Photos are the makerspace's own.
