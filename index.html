@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ME Makerspace · Undergraduate Projects Workshop</title>
+<meta name="description" content="Fly through the Mechanical Engineering makerspace: 3D printers, a CNC router, an electronics bench and two build tables. Download safety sheets and instructions, and see upcoming workshops.">
+<meta name="theme-color" content="#cdd6d6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#162023" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="ME Makerspace · Undergraduate Projects Workshop">
+<meta property="og:description" content="Fly through the room, find a machine, download its safety sheet.">
+<meta property="og:image" content="assets/img/og.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ffc61a'/%3E%3Cpath d='M5 10h22v12H17m-5 0H5z' fill='none' stroke='%23141a1c' stroke-width='2.2'/%3E%3Cpath d='M10 10v7m11-7v7' stroke='%23141a1c' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/main.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body id="top">
+
+<a class="skip" href="#machines">Skip the fly-through</a>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top">
+    <svg class="brand__mark" viewBox="0 0 34 18" aria-hidden="true"><path d="M1.5 1.5h31v15H17.5m-6 0h-10z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 1.5v9m15-9v9" stroke="currentColor" stroke-width="3.4"/><path d="M14.5 2.5h4v4h-4z" fill="var(--yellow)" stroke="currentColor" stroke-width="1.2"/></svg>
+    <span class="brand__name">ME Makerspace</span>
+  </a>
+  <nav class="nav__links" id="links" aria-label="Main">
+    <a href="#room">The room</a>
+    <a href="#machines">Machines and safety</a>
+    <a href="#workshops">Workshops</a>
+    <a href="#nitai">Nitai</a>
+  </nav>
+  <button class="icon-btn" id="theme" type="button" aria-label="Switch between light and dark">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg>
+  </button>
+  <button class="icon-btn nav__menu" id="menu" type="button" aria-expanded="false" aria-controls="links" aria-label="Menu">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+  </button>
+</header>
+
+<main>
+
+<!-- ======================================================================
+     THE ROOM: a pinned 3D stage. Scrolling flies the camera from stop to stop.
+     ====================================================================== -->
+<section class="tour" id="room" aria-label="Fly through the room">
+  <div class="stage" id="stage">
+    <canvas id="scene" data-plan="assets/img/plan-full.webp" aria-hidden="true"></canvas>
+    <img class="stage__photo" src="assets/img/room-wide-1600.webp" alt="The makerspace: a long build table with stools, a tool trolley and a wall of cabinets under the word OMG!" width="1600" height="900">
+    <div class="stage__scrim" aria-hidden="true"></div>
+
+    <div class="hero" id="hero">
+      <h1>Build the thing you&nbsp;drew.</h1>
+      <p class="hero__lede">This is the Undergraduate Projects Workshop at the Faculty of Mechanical Engineering. Four 3D&nbsp;printers, a CNC router, an electronics bench and two long build tables, all in one room. Scroll to fly through it.</p>
+      <div class="hero__cta">
+        <button class="btn btn--go" type="button" data-fly>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-play" d="M8 5.5v13l11-6.5z" fill="currentColor"/><path class="i-pause" d="M7 5h4v14H7zm6 0h4v14h-4z" fill="currentColor"/></svg>
+          <span data-fly-label>Play the fly-through</span>
+        </button>
+        <a class="btn btn--quiet" href="#machines">Find a machine</a>
+      </div>
+    </div>
+    <p class="cue" aria-hidden="true"><span></span>Scroll to fly</p>
+
+    <ol class="stops" id="stops">
+
+      <li class="stop" data-stop="1">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="assets/img/door-1600.webp"><img src="assets/img/door-sm.webp" alt="Glass door with a sign reading Undergraduate Projects Workshop in Hebrew and English" width="640" height="1138" decoding="async"></button>
+            <button class="shot" type="button" data-full="assets/img/fasteners-1600.webp"><img src="assets/img/fasteners-sm.webp" alt="Wall of clear tilt bins full of screws, hand-labelled M3×40, M4×50 and so on" width="640" height="1138" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>01</b><span>of 10</span></p>
+            <h2 class="card__title">Front door</h2>
+            <p class="card__text">Come in through the double doors. The tall cabinet beside them is the hardware wall: bins of M3, M4 and M5 screws, sorted by length and labelled by head type.</p>
+            <ul class="card__list">
+              <li>Cap-head and countersunk screws</li>
+              <li>M3 to M5, from 5 to 50&nbsp;mm long</li>
+            </ul>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="2">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="assets/img/electronics-bench-1600.webp"><img src="assets/img/electronics-bench-sm.webp" alt="Long oak bench with six stools, two bench power supplies and frosted wall cabinets above" width="760" height="428" decoding="async"></button>
+            <button class="shot" type="button" data-full="assets/img/meters-1600.webp"><img src="assets/img/meters-sm.webp" alt="Cabinet shelf with two red multimeters, two digital scales and boxes of electronics kits" width="760" height="428" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>02</b><span>of 10</span></p>
+            <h2 class="card__title">Electronics bench</h2>
+            <p class="card__text">A bench the full width of the room, with sockets at every seat. Two adjustable power supplies sit on the worktop; multimeters, scales and electronics kits are in the cabinets above.</p>
+            <ul class="card__list">
+              <li>Adjustable DC bench supplies</li>
+              <li>Digital multimeters</li>
+              <li>Compact digital scales</li>
+              <li>Kits of boards, jumper wires and parts</li>
+            </ul>
+            <a class="card__link" href="#m-power">Safety sheet and instructions</a>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="3">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="assets/img/solder-corner-1600.webp"><img src="assets/img/solder-corner-sm.webp" alt="Corner bench with a fume extractor, its two black arms reaching over two soldering stations" width="760" height="428" decoding="async"></button>
+            <button class="shot" type="button" data-full="assets/img/hakko-1600.webp"><img src="assets/img/hakko-sm.webp" alt="Blue and yellow Hakko FX-888D soldering station under a fume extractor hood" width="640" height="1138" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>03</b><span>of 10</span></p>
+            <h2 class="card__title">Soldering corner</h2>
+            <p class="card__text">Two Hakko FX-888D stations share one fume extractor, with a flexible arm for each iron. Set the temperature, pull the arm over your work, and solder.</p>
+            <ul class="card__list">
+              <li>Hakko FX-888D soldering stations</li>
+              <li>Fume extractor with two arms</li>
+              <li>Cutting mats at each place</li>
+            </ul>
+            <a class="card__link" href="#m-solder">Safety sheet and instructions</a>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="4">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="assets/img/table-window-1600.webp"><img src="assets/img/table-window-sm.webp" alt="Oak build table with cutting mats, black stools and a screwdriver set at the wall end" width="640" height="1138" decoding="async"></button>
+            <button class="shot" type="button" data-full="assets/img/table-omg-1600.webp"><img src="assets/img/table-omg-sm.webp" alt="The second build table under its overhead rack and strip lights, with the glass office behind" width="640" height="1138" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>04</b><span>of 10</span></p>
+            <h2 class="card__title">Build tables</h2>
+            <p class="card__text">Two tables with eight seats each. Every place has a cutting mat, there are sockets at the table, and a screwdriver set lives at the wall end. The racks overhead carry the lighting and the tool cases.</p>
+            <ul class="card__list">
+              <li>16 seats at two tables</li>
+              <li>Cutting mats at every place</li>
+              <li>Screwdriver and bit sets</li>
+            </ul>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="5">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="assets/img/drawers-1600.webp"><img src="assets/img/drawers-sm.webp" alt="Open drawers of the Beta tool trolley: screwdrivers, wrenches and sockets, each in a foam cut-out" width="640" height="1138" decoding="async"></button>
+            <button class="shot" type="button" data-full="assets/img/drawers-close-1600.webp"><img src="assets/img/drawers-close-sm.webp" alt="Close view of ratchets, sockets and ring wrenches laid out by size in orange and black foam" width="640" height="1138" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>05</b><span>of 10</span></p>
+            <h2 class="card__title">Hand tools</h2>
+            <p class="card__text">The Beta roller cabinet goes wherever the work is. Every socket, wrench and driver has its own foam cut-out, so you can see at a glance what’s missing before you leave.</p>
+            <ul class="card__list">
+              <li>1/2″ and 1/4″ ratchets, sockets up to 32&nbsp;mm</li>
+              <li>Combination and offset ring wrenches</li>
+              <li>Screwdrivers, hex and Torx bits</li>
+            </ul>
+            <a class="card__link" href="#m-tools">Safety sheet and instructions</a>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="6">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="assets/img/filament-1600.webp"><img src="assets/img/filament-sm.webp" alt="Frosted wall cabinets full of boxed filament under a large hand-painted OMG!" width="760" height="428" decoding="async"></button>
+            <button class="shot" type="button" data-full="assets/img/room-wide-1600.webp"><img src="assets/img/room-wide-sm.webp" alt="Wide view of the room: build table, tool trolley and the materials wall at the far end" width="760" height="428" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>06</b><span>of 10</span></p>
+            <h2 class="card__title">Materials wall</h2>
+            <p class="card__text">Filament for the printers is boxed by colour in the cabinets under the big OMG!. Underneath is one more bench, with sockets along its whole length.</p>
+            <ul class="card__list">
+              <li>Filament, sorted by colour</li>
+              <li>Extra bench space</li>
+              <li>Compressed air on the pillar</li>
+            </ul>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="7">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="assets/img/printers-1600.webp"><img src="assets/img/printers-sm.webp" alt="Row of four dark Bambu Lab H2D printers, each with a filament unit on top" width="760" height="428" decoding="async"></button>
+            <button class="shot" type="button" data-full="assets/img/fab-wall-1600.webp"><img src="assets/img/fab-wall-sm.webp" alt="The machine wall: four 3D printers, a PC with two stools and the CNC router by the window" width="760" height="428" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>07</b><span>of 10</span></p>
+            <h2 class="card__title">3D printers</h2>
+            <p class="card__text">Four Bambu Lab H2D printers, each with an AMS&nbsp;2&nbsp;Pro on top that feeds and swaps filament during a print. There’s a PC on the same bench and storage drawers underneath.</p>
+            <ul class="card__list">
+              <li>4 × Bambu Lab H2D</li>
+              <li>AMS 2 Pro multi-material feeders</li>
+              <li>PC at the bench</li>
+            </ul>
+            <a class="card__link" href="#m-printers">Safety sheet and instructions</a>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="8">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="assets/img/cnc-spindle-1600.webp"><img src="assets/img/cnc-spindle-sm.webp" alt="Tormach spindle holding a blue-coated end mill above the router bed" width="640" height="853" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>08</b><span>of 10</span></p>
+            <h2 class="card__title">CNC router</h2>
+            <p class="card__text">A Tormach xsTECH Pro router inside a full enclosure, for the parts a printer can’t make: flat stock, pockets and profiles. Compressed air is on tap beside it.</p>
+            <ul class="card__list">
+              <li>Tormach xsTECH Pro</li>
+              <li>Fully enclosed, with a tool setter</li>
+              <li>Compressed air at the machine</li>
+            </ul>
+            <a class="card__link" href="#m-cnc">Safety sheet and instructions</a>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="9">
+        <article class="card">
+          <div class="card__photos">
+            <button class="shot" type="button" data-full="assets/img/drill-1600.webp"><img src="assets/img/drill-sm.webp" alt="Green Bosch PBD 40 bench drill with its large feed wheel, next to a rack of screwdrivers" width="640" height="1138" decoding="async"></button>
+            <button class="shot" type="button" data-full="assets/img/drill-bench-1600.webp"><img src="assets/img/drill-bench-sm.webp" alt="Bench by the window with the drill press, a small Proxxon table saw and a vacuum underneath" width="640" height="1138" decoding="async"></button>
+          </div>
+          <div class="card__body">
+            <p class="card__no"><b>09</b><span>of 10</span></p>
+            <h2 class="card__title">Drill press and saw</h2>
+            <p class="card__text">The Bosch PBD&nbsp;40 bench drill shows its speed and drilling depth on a display. Next to it are a Proxxon table saw for small, precise cuts and a vacuum under the bench for the chips.</p>
+            <ul class="card__list">
+              <li>Bosch PBD 40 bench drill</li>
+              <li>Proxxon table saw</li>
+              <li>Workshop vacuum</li>
+            </ul>
+            <a class="card__link" href="#m-drill">Safety sheet and instructions</a>
+          </div>
+        </article>
+      </li>
+
+      <li class="stop" data-stop="10">
+        <article class="card">
+          <div class="card__body">
+            <p class="card__no"><b>10</b><span>of 10</span></p>
+            <h2 class="card__title">The office</h2>
+            <p class="card__text">The glass room between the two build tables is where you’ll find Nitai Bibber, the engineer who runs the makerspace. Not sure which machine fits the job? Knock.</p>
+            <a class="card__link card__link--to" href="#nitai">Meet Nitai</a>
+          </div>
+        </article>
+      </li>
+
+    </ol>
+
+    <aside class="hud" id="hud" aria-label="Where you are in the room">
+      <div class="map" id="map">
+        <div class="map__plan" aria-hidden="true"></div>
+        <svg class="map__cam" id="cam" viewBox="-20 -20 40 40" aria-hidden="true"><path d="M0 0L-9-17A19 19 0 0 1 9-17z" fill="var(--yellow)" opacity=".55"/><circle r="4.2" fill="var(--yellow)" stroke="var(--on-yellow)" stroke-width="1.6"/></svg>
+      </div>
+      <div class="transport">
+        <button class="icon-btn" type="button" id="prev" aria-label="Previous stop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <span class="transport__no" id="hudNo" aria-live="polite">Overview</span>
+        <button class="icon-btn" type="button" id="next" aria-label="Next stop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="icon-btn icon-btn--go" type="button" data-fly aria-label="Play the fly-through"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-play" d="M8 5.5v13l11-6.5z" fill="currentColor"/><path class="i-pause" d="M7 5h4v14H7zm6 0h4v14h-4z" fill="currentColor"/></svg></button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- the scroll distance that drives the flight; one segment per stop -->
+  <div class="tour__track" id="track" aria-hidden="true"></div>
+  <span class="tour__mark" id="stop-1" style="--i:1"></span>
+  <span class="tour__mark" id="stop-2" style="--i:2"></span>
+  <span class="tour__mark" id="stop-3" style="--i:3"></span>
+  <span class="tour__mark" id="stop-4" style="--i:4"></span>
+  <span class="tour__mark" id="stop-5" style="--i:5"></span>
+  <span class="tour__mark" id="stop-6" style="--i:6"></span>
+  <span class="tour__mark" id="stop-7" style="--i:7"></span>
+  <span class="tour__mark" id="stop-8" style="--i:8"></span>
+  <span class="tour__mark" id="stop-9" style="--i:9"></span>
+  <span class="tour__mark" id="stop-10" style="--i:10"></span>
+</section>
+
+<!-- ======================================================================
+     What the walls say
+     ====================================================================== -->
+<section class="words" aria-label="What the walls say">
+  <div class="words__strip" id="words" aria-hidden="true">
+    <span class="w w--a">oops!</span><span class="w w--b">OMG!</span><span class="w w--c">what?!</span><span class="w w--d">ouch</span><span class="w w--a">oops!</span><span class="w w--b">OMG!</span><span class="w w--c">what?!</span><span class="w w--d">ouch</span>
+  </div>
+  <p class="words__note">It’s written all over our walls for a reason. Things go wrong in here every day, and that’s how they end up working. The sheets below keep the mistakes small.</p>
+</section>
+
+<!-- ======================================================================
+     Machines and safety. Put the PDFs in /docs and delete each data-soon.
+     ====================================================================== -->
+<section class="block" id="machines">
+  <header class="block__head">
+    <h2>Read up before you power&nbsp;up.</h2>
+    <p>Every machine in the room has a safety sheet and a set of instructions. Download both before your first session.</p>
+  </header>
+
+  <ul class="index">
+    <li class="row" id="m-rules">
+      <div class="row__what"><h3>Workshop rules</h3><p>For everyone, on every visit</p></div>
+      <span class="row__where row__where--none">Whole room</span>
+      <div class="row__docs">
+        <a class="doc" href="docs/workshop-rules.pdf" download data-soon="The workshop rules PDF isn’t uploaded yet."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Workshop rules <small>PDF</small></a>
+      </div>
+    </li>
+    <li class="row" id="m-printers">
+      <div class="row__what"><h3>3D printers</h3><p>Bambu Lab H2D, four machines</p></div>
+      <a class="row__where" href="#stop-7"><b>07</b>Show in the room</a>
+      <div class="row__docs">
+        <a class="doc" href="docs/3d-printers-safety.pdf" download data-soon="This safety sheet isn’t uploaded yet."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Safety sheet <small>PDF</small></a>
+        <a class="doc" href="docs/3d-printers-instructions.pdf" download data-soon="These instructions aren’t uploaded yet."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Instructions <small>PDF</small></a>
+      </div>
+    </li>
+    <li class="row" id="m-cnc">
+      <div class="row__what"><h3>CNC router</h3><p>Tormach xsTECH Pro</p></div>
+      <a class="row__where" href="#stop-8"><b>08</b>Show in the room</a>
+      <div class="row__docs">
+        <a class="doc" href="docs/cnc-router-safety.pdf" download data-soon="This safety sheet isn’t uploaded yet."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Safety sheet <small>PDF</small></a>
+        <a class="doc" href="docs/cnc-router-instructions.pdf" download data-soon="These instructions aren’t uploaded yet."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Instructions <small>PDF</small></a>
+      </div>
+    </li>
+    <li class="row" id="m-drill">
+      <div class="row__what"><h3>Bench drill</h3><p>Bosch PBD 40</p></div>
+      <a class="row__where" href="#stop-9"><b>09</b>Show in the room</a>
+      <div class="row__docs">
+        <a class="doc" href="docs/bench-drill-safety.pdf" download data-soon="This safety sheet isn’t uploaded yet."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Safety sheet <small>PDF</small></a>
+        <a class="doc" href="docs/bench-drill-instructions.pdf" download data-soon="These instructions aren’t uploaded yet."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Instructions <small>PDF</small></a>
+      </div>
+    </li>
+    <li class="row" id="m-saw">
+      <div class="row__what"><h3>Table saw</h3><p>Proxxon</p></div>
+      <a class="row__where" href="#stop-9"><b>09</b>Show in the room</a>
+      <div class="row__docs">
+        <a class="doc" href="docs/table-saw-safety.pdf" download data-soon="This safety sheet isn’t uploaded yet."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Safety sheet <small>PDF</small></a>
+        <a class="doc" href="docs/table-saw-instructions.pdf" download data-soon="These instructions aren’t uploaded yet."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Instructions <small>PDF</small></a>
+      </div>
+    </li>
+    <li class="row" id="m-solder">
+      <div class="row__what"><h3>Soldering stations</h3><p>Hakko FX-888D, with fume extraction</p></div>
+      <a class="row__where" href="#stop-3"><b>03</b>Show in the room</a>
+      <div class="row__docs">
+        <a class="doc" href="docs/soldering-safety.pdf" download data-soon="This safety sheet isn’t uploaded yet."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Safety sheet <small>PDF</small></a>
+        <a class="doc" href="docs/soldering-instructions.pdf" download data-soon="These instructions aren’t uploaded yet."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Instructions <small>PDF</small></a>
+      </div>
+    </li>
+    <li class="row" id="m-power">
+      <div class="row__what"><h3>Bench power supplies</h3><p>Adjustable DC supplies and multimeters</p></div>
+      <a class="row__where" href="#stop-2"><b>02</b>Show in the room</a>
+      <div class="row__docs">
+        <a class="doc" href="docs/bench-power-safety.pdf" download data-soon="This safety sheet isn’t uploaded yet."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Safety sheet <small>PDF</small></a>
+        <a class="doc" href="docs/bench-power-instructions.pdf" download data-soon="These instructions aren’t uploaded yet."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Instructions <small>PDF</small></a>
+      </div>
+    </li>
+    <li class="row" id="m-tools">
+      <div class="row__what"><h3>Hand tools</h3><p>Beta roller cabinet and screwdriver sets</p></div>
+      <a class="row__where" href="#stop-5"><b>05</b>Show in the room</a>
+      <div class="row__docs">
+        <a class="doc" href="docs/hand-tools-safety.pdf" download data-soon="This safety sheet isn’t uploaded yet."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Safety sheet <small>PDF</small></a>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ======================================================================
+     Workshops. The three topics are placeholders until real sessions exist.
+     ====================================================================== -->
+<section class="block" id="workshops">
+  <header class="block__head">
+    <h2>Learn a machine in an afternoon.</h2>
+    <p>From time to time we run hands-on sessions in the room. New dates are posted here first.</p>
+  </header>
+  <div class="sessions">
+    <article class="session">
+      <img src="assets/img/printers-sm.webp" alt="" width="760" height="428" loading="lazy" decoding="async">
+      <div class="session__body">
+        <p class="session__when">Date to be announced</p>
+        <h3>3D printing: from file to first part</h3>
+        <p>Slice a model, load the filament and start your first print on the Bambu printers.</p>
+      </div>
+    </article>
+    <article class="session">
+      <img src="assets/img/cnc-spindle-sm.webp" alt="" width="640" height="853" loading="lazy" decoding="async">
+      <div class="session__body">
+        <p class="session__when">Date to be announced</p>
+        <h3>CNC routing: your first cut</h3>
+        <p>Clamp the stock, set the tool and run a simple profile on the Tormach router.</p>
+      </div>
+    </article>
+    <article class="session">
+      <img src="assets/img/solder-corner-sm.webp" alt="" width="760" height="428" loading="lazy" decoding="async">
+      <div class="session__body">
+        <p class="session__when">Date to be announced</p>
+        <h3>Soldering: build a working board</h3>
+        <p>Tin, solder and inspect your joints at the Hakko stations, then power the board up.</p>
+      </div>
+    </article>
+  </div>
+  <a class="btn btn--quiet" href="workshops.html" data-soon="The workshops page is next on the build list.">See all workshops</a>
+</section>
+
+<!-- ======================================================================
+     Nitai
+     ====================================================================== -->
+<section class="block person" id="nitai">
+  <div class="person__tile" aria-hidden="true"><span>NB</span></div>
+  <div class="person__text">
+    <h2>Run by Nitai Bibber.</h2>
+    <p>Nitai is the engineer who runs the makerspace. Ask him when you’re not sure which tool fits the job, or how to use a machine safely.</p>
+    <a class="btn btn--quiet" href="nitai.html" data-soon="Nitai’s page is next on the build list.">Meet Nitai</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <p class="foot__mark" aria-hidden="true">ME Makerspace</p>
+  <div class="foot__cols">
+    <div>
+      <p>Undergraduate Projects Workshop<br>Faculty of Mechanical Engineering<br>Technion – Israel Institute of Technology</p>
+      <p class="he" lang="he" dir="rtl">הסדנא לפרויקטים בלימודי הסמכה</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="#room">The room</a>
+      <a href="#machines">Machines and safety</a>
+      <a href="#workshops">Workshops</a>
+      <a href="#nitai">Nitai</a>
+    </nav>
+  </div>
+  <p class="foot__small">© 2026 Faculty of Mechanical Engineering</p>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-label="Photo">
+  <button class="icon-btn lightbox__x" type="button" data-close aria-label="Close photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+  <button class="icon-btn lightbox__nav lightbox__nav--prev" type="button" data-step="-1" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <figure>
+    <img id="lightboxImg" alt="">
+    <figcaption id="lightboxCap"></figcaption>
+  </figure>
+  <button class="icon-btn lightbox__nav lightbox__nav--next" type="button" data-step="1" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/vendor/three.min.js"></script>
+<script src="assets/js/room.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
