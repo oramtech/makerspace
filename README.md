@@ -36,6 +36,12 @@ docs/                      safety sheets and instructions (PDF) go here
 - **Nitai.** The section shows initials. To use a photo, replace the `<div class="person__tile">` with an `<img>`.
 - **Opening hours.** 08:00–15:00, shown in the hero, the footer and the PDFs. Days, location and contact details are not on the page yet.
 
+## The domain
+
+The site is served at `https://techmakerspace.com/`. The `CNAME` file in this folder tells GitHub Pages which domain to use,
+so keep it. The domain is registered at Cloudflare, where four `A` records point the bare domain at GitHub Pages
+and a `CNAME` record points `www` at `<account>.github.io`. If the repository moves to another account, update that `www` record.
+
 ## After you change CSS or JavaScript
 
 Both pages load `main.css`, `room.js` and `main.js` with a version stamp, for example `main.css?v=1a2b3c4d`.
